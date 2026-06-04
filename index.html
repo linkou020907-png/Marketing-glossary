@@ -285,7 +285,87 @@ body{background:#F4F5F0;color:#2A2E1E;font-family:'Noto Sans KR',sans-serif;font
 .toast{position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(20px);background:#2A2E1E;color:#C8D890;padding:13px 22px;border-radius:12px;font-size:14px;font-weight:600;font-family:'Noto Sans KR',sans-serif;box-shadow:0 8px 32px rgba(0,0,0,.2);z-index:9999;opacity:0;transition:all .3s cubic-bezier(.34,1.56,.64,1);pointer-events:none;display:flex;align-items:center;gap:10px;white-space:nowrap;}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 .toast-icon{font-size:16px;}
-/* ── PROFILE SELECTOR ── */
+/* ── STUDY MODE ── */
+.study-header{text-align:center;margin-bottom:20px;}
+.study-header h2{font-size:22px;font-weight:900;color:#2A2E1E;margin-bottom:6px;}
+.study-header p{font-size:13px;color:#7A8460;line-height:1.7;}
+.study-progress-bar{background:#E4E8D4;border-radius:20px;height:6px;margin:10px 0 5px;overflow:hidden;max-width:480px;margin-left:auto;margin-right:auto;}
+.study-progress-fill{background:linear-gradient(90deg,#7A9C30,#C8D890);height:100%;border-radius:20px;transition:width .4s ease;}
+.study-progress-txt{font-family:'DM Mono',monospace;font-size:10px;color:#AAB090;text-align:right;margin-bottom:16px;max-width:480px;margin-left:auto;margin-right:auto;}
+.study-card{max-width:480px;margin:0 auto;}
+/* 모드 선택 */
+.study-mode-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px;max-width:480px;margin-left:auto;margin-right:auto;}
+.study-mode-btn{border:2px solid #E4E8D4;border-radius:14px;padding:14px 8px;cursor:pointer;text-align:center;background:#fff;transition:all .18s;font-family:'Noto Sans KR',sans-serif;}
+.study-mode-btn:hover{border-color:#8AAA40;transform:translateY(-2px);}
+.study-mode-btn.active{border-color:#2A2E1E;background:#2A2E1E;}
+.study-mode-btn.active .smb-title{color:#C8D890;}
+.study-mode-btn.active .smb-desc{color:#7A9C30;}
+.smb-icon{font-size:22px;margin-bottom:6px;}
+.smb-title{font-size:12px;font-weight:700;color:#2A2E1E;margin-bottom:3px;}
+.smb-desc{font-size:10px;color:#AAB090;line-height:1.4;}
+/* 카드 뒤집기 */
+.flip-card{perspective:1000px;max-width:480px;margin:0 auto 14px;cursor:pointer;min-height:260px;}
+.flip-card-inner{position:relative;width:100%;min-height:260px;transition:transform .5s ease;transform-style:preserve-3d;}
+.flip-card.flipped .flip-card-inner{transform:rotateY(180deg);}
+.flip-front,.flip-back{backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:20px;border:1.5px solid #E4E8D4;padding:28px;background:#fff;width:100%;box-sizing:border-box;}
+.flip-back{position:absolute;top:0;left:0;transform:rotateY(180deg);background:#EEF4E4;border-color:#C8D890;}
+.flip-hint{font-size:12px;color:#7A8460;text-align:center;margin-bottom:12px;max-width:480px;margin-left:auto;margin-right:auto;transition:color .3s;}
+.flip-tap{font-size:11px;color:#C8D890;text-align:center;margin-top:12px;font-family:'DM Mono',monospace;letter-spacing:1px;}
+/* 빈칸 채우기 */
+.fill-card{background:#fff;border-radius:20px;border:1.5px solid #E4E8D4;padding:28px;max-width:480px;margin:0 auto 14px;}
+.fill-sentence{font-size:15px;color:#2A2E1E;line-height:2;margin-bottom:16px;font-weight:500;}
+.fill-blank-input{border:none;border-bottom:2.5px solid #2A2E1E;background:transparent;font-size:15px;font-family:'Noto Sans KR',sans-serif;color:#2A2E1E;outline:none;min-width:80px;padding:0 4px;text-align:center;transition:border-color .2s;}
+.fill-blank-input:focus{border-color:#7A9C30;}
+.fill-blank-input.correct{border-color:#7A9C30;color:#3A6020;}
+.fill-blank-input.wrong{border-color:#B02828;color:#B02828;}
+.fill-hint-row{font-size:12px;color:#7A8460;margin-bottom:12px;font-style:italic;}
+.fill-check-btn{width:100%;background:#2A2E1E;border:none;border-radius:10px;padding:13px 0;font-size:14px;font-weight:700;color:#C8D890;cursor:pointer;font-family:'Noto Sans KR',sans-serif;margin-bottom:10px;}
+.fill-result{border-radius:10px;padding:12px 16px;font-size:13px;line-height:1.6;display:none;margin-bottom:10px;}
+.fill-result.ok{background:#EEF4E4;color:#3A6020;border:1px solid #C0D890;display:block;}
+.fill-result.no{background:#FDECEA;color:#B02828;border:1px solid #F0C0C0;display:block;}
+/* 공통 카드 내용 */
+.study-tc-cat{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:#AAB090;margin-bottom:10px;}
+.study-tc-ko{font-size:26px;font-weight:900;color:#2A2E1E;letter-spacing:-.5px;margin-bottom:4px;line-height:1.2;}
+.study-tc-en{font-family:'DM Mono',monospace;font-size:11px;color:#7A9C30;letter-spacing:1px;margin-bottom:16px;}
+.study-tc-divider{height:1px;background:#EEF0E8;margin-bottom:16px;}
+.study-tc-def{font-size:14px;color:#5A6040;line-height:1.85;margin-bottom:12px;}
+.study-tc-real{background:#F7F8F2;border-left:3px solid #C8D890;padding:10px 14px;font-size:12px;color:#4A5030;line-height:1.8;font-style:italic;border-radius:0 8px 8px 0;margin-bottom:8px;}
+.study-tc-tip{background:#EEF4E4;border-radius:8px;padding:10px 14px;font-size:12px;color:#3A5020;margin-bottom:12px;}
+.study-tc-tip-label{font-family:'DM Mono',monospace;font-size:9px;color:#7A9C30;letter-spacing:1px;margin-bottom:4px;}
+.study-tc-rels{display:flex;gap:5px;flex-wrap:wrap;}
+.study-tc-rel{background:#F4F5F0;border-radius:5px;padding:3px 10px;font-size:11px;color:#5A6040;font-family:'DM Mono',monospace;}
+/* 하단 버튼 */
+.study-nav{display:flex;gap:8px;max-width:480px;margin:0 auto 20px;}
+.study-nav-btn{flex:1;border:none;border-radius:12px;padding:13px 0;font-size:13px;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:all .15s;}
+.study-btn-hard{background:#FDECEA;color:#B02828;}
+.study-btn-hard:hover{background:#F5C0C0;}
+.study-btn-ok{background:#FBF3E0;color:#8A5800;}
+.study-btn-ok:hover{background:#E8D890;}
+.study-btn-easy{background:#EEF4E4;color:#3A6020;}
+.study-btn-easy:hover{background:#C8D890;}
+/* streak */
+.study-streak{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:16px;}
+.study-streak-badge{background:#2A2E1E;color:#C8D890;border-radius:20px;padding:5px 14px;font-size:12px;font-weight:700;font-family:'DM Mono',monospace;}
+.study-streak-label{font-size:12px;color:#AAB090;}
+/* 완료 */
+.study-complete{text-align:center;padding:32px 20px;max-width:480px;margin:0 auto;}
+.study-complete-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:16px 0 20px;}
+.study-stat{background:#fff;border:1px solid #E4E8D4;border-radius:12px;padding:14px 8px;text-align:center;}
+.study-stat-num{font-size:22px;font-weight:900;color:#7A9C30;font-family:'DM Mono',monospace;}
+.study-stat-label{font-size:10px;color:#AAB090;margin-top:3px;}
+/* 카테고리 */
+.study-cat-select{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-bottom:16px;max-width:480px;margin-left:auto;margin-right:auto;}
+.study-cat-btn{border:1.5px solid #E4E8D4;border-radius:10px;padding:8px 4px;cursor:pointer;text-align:center;background:#FAFAF8;transition:all .15s;font-family:'Noto Sans KR',sans-serif;}
+.study-cat-btn:hover,.study-cat-btn.active{transform:translateY(-1px);box-shadow:0 3px 8px rgba(0,0,0,.06);}
+.study-cat-btn.active{border-width:2px;}
+/* 간격반복 뱃지 */
+.spaced-badge{font-family:'DM Mono',monospace;font-size:9px;padding:2px 7px;border-radius:6px;margin-left:6px;vertical-align:middle;}
+.sp-hard{background:#FDECEA;color:#B02828;}
+.sp-ok{background:#FBF3E0;color:#8A5800;}
+@media(max-width:600px){
+  .study-mode-grid{grid-template-columns:repeat(3,1fr);}
+  .study-cat-select{grid-template-columns:repeat(4,1fr);}
+}
 .profile-overlay{display:flex;position:fixed;inset:0;background:#2A2E1E;z-index:1000;align-items:center;justify-content:center;}
 .profile-overlay.hidden{display:none;}
 .profile-box{background:#F4F5F0;border-radius:20px;padding:36px;max-width:480px;width:90%;}
@@ -457,17 +537,7 @@ body{background:#F4F5F0;color:#2A2E1E;font-family:'Noto Sans KR',sans-serif;font
     </div>
     <div id="wrongnoteGrid"></div>
   </div>
-  <div id="compareSection" style="display:none;">
-    <div style="font-size:18px;font-weight:700;color:#2A2E1E;margin-bottom:8px;">🔀 용어 비교</div>
-    <div style="font-size:13px;color:#7A8460;margin-bottom:16px;">비교할 용어를 2~3개 선택하세요</div>
-    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;">
-      <div class="compare-slot"><input class="compare-input" id="cmpInput1" placeholder="용어 검색 1…" oninput="showCmpSuggest(1)" autocomplete="off"><div class="compare-suggest" id="cmpSuggest1" style="display:none;"></div></div>
-      <div class="compare-slot"><input class="compare-input" id="cmpInput2" placeholder="용어 검색 2…" oninput="showCmpSuggest(2)" autocomplete="off"><div class="compare-suggest" id="cmpSuggest2" style="display:none;"></div></div>
-      <div class="compare-slot"><input class="compare-input" id="cmpInput3" placeholder="용어 검색 3 (선택)…" oninput="showCmpSuggest(3)" autocomplete="off"><div class="compare-suggest" id="cmpSuggest3" style="display:none;"></div></div>
-      <button onclick="runCompare()" style="background:#2A2E1E;border:none;border-radius:8px;padding:10px 20px;font-size:13px;color:#C8D890;cursor:pointer;font-family:'Noto Sans KR',sans-serif;font-weight:700;">비교하기</button>
-    </div>
-    <div id="compareResult"></div>
-  </div>
+
   <div id="calcSection" style="display:none;">
     <div style="font-size:18px;font-weight:700;color:#2A2E1E;margin-bottom:6px;">🧮 실무 계산기</div>
     <div style="font-size:13px;color:#7A8460;margin-bottom:20px;">계산할 항목을 선택하세요</div>
@@ -475,30 +545,11 @@ body{background:#F4F5F0;color:#2A2E1E;font-family:'Noto Sans KR',sans-serif;font
     <div id="calcPanel"></div>
     <div class="bm-section"><div style="font-size:16px;font-weight:700;color:#2A2E1E;margin-bottom:14px;">📊 업종별 벤치마크</div><div id="bmInner"></div></div>
   </div>
-  <div id="historySection" style="display:none;">
-    <div style="font-size:18px;font-weight:700;color:#2A2E1E;margin-bottom:8px;">📅 마케팅 역사 타임라인</div>
-    <div style="font-size:13px;color:#7A8460;margin-bottom:24px;">ATL 시대부터 AI 마케팅까지 주요 전환점</div>
-    <div class="timeline" id="historyTimeline"></div>
+
+  <div id="studySection" style="display:none;">
+    <div id="studyContent"></div>
   </div>
-  <div id="trendSection" style="display:none;">
-    <div class="trend-top-bar"><h2>🔥 트렌드 & 이슈</h2><button class="btn-add" onclick="toggleAddForm()">＋ 직접 등록</button></div>
-    <div class="add-form-wrap" id="addFormWrap">
-      <div style="font-size:15px;font-weight:700;color:#2A2E1E;margin-bottom:18px;">새 트렌드 / 기사 등록</div>
-      <div class="form-grid">
-        <div class="form-row"><label>중요도</label><select id="fBadge"><option value="trend-hot">🔴 HOT</option><option value="trend-new">🟢 NEW</option><option value="trend-watch">🟡 WATCH</option><option value="trend-deep">🔵 DEEP DIVE</option></select></div>
-        <div class="form-row"><label>날짜</label><input type="text" id="fDate" placeholder="2025 Q2"></div>
-        <div class="form-row full"><label>제목</label><input type="text" id="fTitle" placeholder="트렌드 또는 기사 제목"></div>
-        <div class="form-row full"><label>기사 URL (선택)</label><input type="text" id="fUrl" placeholder="https://..."></div>
-        <div class="form-row full"><label>출처/매체명 (선택)</label><input type="text" id="fSource" placeholder="예: 마케팅 조선"></div>
-        <div class="form-row full"><label>요약</label><textarea id="fSummary" placeholder="핵심 내용 2~3문장"></textarea></div>
-        <div class="form-row full"><label>주요 포인트 (줄바꿈으로 구분)</label><textarea id="fPoints" placeholder="포인트 1&#10;포인트 2"></textarea></div>
-        <div class="form-row full"><label>태그 (쉼표로 구분)</label><input type="text" id="fTags" placeholder="퍼스트파티데이터, CDP"></div>
-      </div>
-      <div class="form-actions"><button class="btn-submit" onclick="submitTrend()">등록하기</button><button class="btn-cancel" onclick="toggleAddForm()">취소</button></div>
-    </div>
-    <div class="trend-grid" id="trendGrid"></div>
-  </div>
-  <div id="quizSection" style="display:none;">
+    <div id="quizSection" style="display:none;">
     <div class="quiz-wrap">
       <div id="quizStart" class="quiz-card">
         <div style="text-align:center;margin-bottom:22px;"><div style="font-size:22px;font-weight:900;color:#2A2E1E;margin-bottom:6px;">📝 마케팅 용어 테스트</div><div style="font-size:13px;color:#7A8460;">카테고리와 레벨을 선택하세요</div></div>
@@ -1134,7 +1185,7 @@ const DEFAULT_TRENDS = [
 // ── CONFIG ──
 const CAT_META={paid:{label:"퍼포먼스",color:"#B02828",bg:"#FDECEA",icon:"📊"},data:{label:"데이터",color:"#8A5800",bg:"#FBF3E0",icon:"📈"},content:{label:"콘텐츠",color:"#2040A0",bg:"#E4EAF8",icon:"✍️"},growth:{label:"그로스",color:"#3A6810",bg:"#E8F2D8",icon:"🚀"},brand:{label:"브랜드",color:"#6A2090",bg:"#F5EEF8",icon:"🎨"},crm:{label:"CRM",color:"#1A6850",bg:"#E8F5F0",icon:"🤝"}};
 const BADGE_CLS={growth:"b-growth",content:"b-content",data:"b-data",brand:"b-brand",paid:"b-paid",crm:"b-crm"};
-const TABS=[{key:"terms",label:"📖 용어사전"},{key:"bookmark",label:"⭐ 북마크"},{key:"wrongnote",label:"📒 오답노트"},{key:"compare",label:"🔀 비교"},{key:"calc",label:"🧮 계산기"},{key:"history",label:"📅 히스토리"},{key:"trend",label:"🔥 트렌드"},{key:"quiz",label:"📝 테스트"}];
+const TABS=[{key:"terms",label:"📖 용어사전"},{key:"bookmark",label:"⭐ 북마크"},{key:"wrongnote",label:"📒 오답노트"},{key:"study",label:"☀️ 데일리 공부"},{key:"calc",label:"🧮 계산기"},{key:"quiz",label:"📝 테스트"}];
 const GANADA=["ㄱ","ㄴ","ㄷ","ㄹ","ㅁ","ㅂ","ㅅ","ㅇ","ㅈ","ㅊ","ㅋ","ㅌ","ㅍ","ㅎ","A-Z"];
 const GANADA_MAP={ㄱ:/^[가-깋]/,ㄴ:/^[나-닣]/,ㄷ:/^[다-딯]/,ㄹ:/^[라-맇]/,ㅁ:/^[마-밓]/,ㅂ:/^[바-빟]/,ㅅ:/^[사-싷]/,ㅇ:/^[아-잏]/,ㅈ:/^[자-짛]/,ㅊ:/^[차-칳]/,ㅋ:/^[카-킿]/,ㅌ:/^[타-팋]/,ㅍ:/^[파-핗]/,ㅎ:/^[하-힣]/,"A-Z":/^[A-Za-z]/};
 const DIFF_MAP={CPA:"mid",CPC:"basic",CPM:"basic",CPL:"mid",ROAS:"mid",ROI:"mid","CTR":"basic","임프레션 (Impression)":"basic","리치 (Reach)":"basic","빈도 (Frequency)":"mid","광고 소재 (Creative)":"mid","유료 트래픽 (Paid Traffic)":"basic","룩어라이크 (Lookalike)":"adv","오디언스 (Audience)":"mid","네이티브 광고":"basic","리타겟팅":"mid","랜딩페이지 (LP)":"basic","SEM":"basic","퍼포먼스 마케팅":"mid","제휴 마케팅 (Affiliate)":"mid","CPS":"mid","KPI":"basic","전환율 (CVR)":"basic","A/B 테스트":"mid","LTV / CLV":"mid","CAC":"mid","UV":"basic","PV (페이지뷰)":"basic","세션 (Session)":"basic","바운스율 (Bounce Rate)":"basic","트래픽":"basic","UTM":"mid","어트리뷰션":"adv","픽셀 (Pixel)":"mid","DAU / WAU / MAU":"basic","리텐션":"mid","ARPU":"mid","CDP":"adv","퍼스트파티 데이터":"mid","OKR":"mid","TAM / SAM / SOM":"mid","코호트 분석":"adv","북극성 지표 (NSM)":"adv","퍼널 분석":"mid","체류 시간 (Duration Time)":"basic","SEO":"basic","콘텐츠 마케팅":"basic","참여율 (ER)":"basic","UGC":"basic","인플루언서 마케팅":"basic","오가닉":"basic","CTA":"basic","뉴스레터":"basic","콘텐츠 캘린더":"basic","소셜 리스닝":"mid","퍼널 (Funnel)":"basic","그로스 해킹":"mid","AARRR":"mid","TOFU/MOFU/BOFU":"mid","그로스 마케팅":"mid","PMF":"adv","바이럴":"basic","바이럴 계수 (K-factor)":"adv","활성화율":"mid","AHA 모먼트":"adv","리퍼럴 마케팅":"mid","브랜드 보이스":"basic","포지셔닝":"mid","퍼소나 (Persona)":"basic","ATL/BTL":"basic","인지도 (Awareness)":"basic","브랜드 아이덴티티":"basic","브랜드 로열티":"mid","D2C":"mid","옴니채널":"mid","USP":"mid","가치 제안":"mid","STP 전략":"mid","SWOT 분석":"basic","4P / 마케팅 믹스":"basic","AIDMA":"basic","OOH (옥외광고)":"basic","IMC":"mid","PR (홍보)":"basic","GTM 전략":"adv","제품 수명주기 (PLC)":"mid","카니발라이제이션":"adv","AE / AD / CD / CW":"basic","CRM":"basic","리드 (Lead)":"basic","리드 너처링":"mid","MQL / SQL":"mid","고객 여정 (CJM)":"mid","ABM":"adv","드립 캠페인":"mid","업셀링 / 크로스셀링":"mid","윈백 캠페인":"mid","고객 온보딩":"mid","로열티 프로그램":"mid","NPS":"basic","VOC":"basic"};
@@ -1262,7 +1313,6 @@ function selectProfile(name){
   TERMS.sort(sortGanada);
   renderTabs();
   switchTab('terms');
-  renderTrends();
   // 업데이트 배너
   initUpdateBanner();
   // 오늘의 용어
@@ -1312,15 +1362,15 @@ function switchTab(key){
   if(key==="terms"){activeCat="all";activeGana="전체";}
   const si=document.getElementById("searchInput");if(si)si.value="";
   hideAC();
-  const secs=["terms","bookmark","wrongnote","compare","calc","history","trend","quiz"];
+  const secs=["terms","bookmark","wrongnote","study","calc","quiz"];
   secs.forEach(s=>document.getElementById(s+"Section").style.display=s===key?"block":"none");
   document.getElementById("navSearchWrap").style.display=key==="terms"?"":"none";
   renderTabs();
   if(key==="terms") renderTerms();
   if(key==="bookmark") renderBookmarks();
   if(key==="wrongnote") renderWrongNote();
+  if(key==="study") renderStudy();
   if(key==="calc"){renderCalc();renderBenchmark();}
-  if(key==="history") renderHistory();
   if(key==="quiz") initQuizStart();
 }
 
@@ -1501,23 +1551,311 @@ function startWrongNoteTest(){
   },200);
 }
 
-// ── COMPARE ──
-function showCmpSuggest(n){
-  const val=document.getElementById("cmpInput"+n).value.toLowerCase();const sug=document.getElementById("cmpSuggest"+n);
-  if(!val){sug.style.display="none";return;}
-  const matches=TERMS.filter(t=>t.ko.toLowerCase().includes(val)||t.en.toLowerCase().includes(val)).slice(0,8);
-  if(!matches.length){sug.style.display="none";return;}
-  sug.innerHTML=matches.map(t=>`<div class="compare-suggest-item" onclick="selCmp(${n},'${t.ko.replace(/'/g,"\\'")}')">${t.ko}</div>`).join("");
-  sug.style.display="block";
+// ── STUDY MODE ──
+let studyQueue=[], studyIndex=0, studyCorrect=0, studyStarted=false;
+let studyCatFilter='all', studyMode='flip';
+let flipRevealed=false;
+let fillStreak=0, fillLevel=1; // 빈칸 채우기 연속 정답 & 레벨 (1~3)
+const STUDY_DAILY_COUNT=10;
+const FILL_LEVEL_UP=3; // 연속 N개 맞히면 레벨 업
+
+function studyKey(k){return profileKey('study_'+k);}
+function getStudyStreak(){
+  try{
+    const d=JSON.parse(localStorage.getItem(studyKey('streak'))||'{"count":0,"lastDate":""}');
+    const yd=new Date(Date.now()-86400000).toDateString();
+    if(d.lastDate===new Date().toDateString()||d.lastDate===yd) return d;
+    return {count:0,lastDate:""};
+  }catch(e){return {count:0,lastDate:""};}
 }
-function selCmp(n,ko){cmpSelected[n]=ko;document.getElementById("cmpInput"+n).value=ko;document.getElementById("cmpSuggest"+n).style.display="none";}
-function runCompare(){
-  const terms=[cmpSelected[1],cmpSelected[2],cmpSelected[3]].filter(Boolean).map(ko=>TERMS.find(t=>t.ko===ko)).filter(Boolean);
-  if(terms.length<2){showToast("비교할 용어를 2개 이상 선택해주세요","⚠️");return;}
-  const rows=[{key:"카테고리",fn:t=>t.catLabel},{key:"한 줄 설명",fn:t=>t.short},{key:"정의",fn:t=>t.def},{key:"실무 팁 1",fn:t=>t.tips[0]||"-"},{key:"실무 팁 2",fn:t=>t.tips[1]||"-"},{key:"관련 용어",fn:t=>t.related.join(", ")}];
-  document.getElementById("compareResult").innerHTML=`<div class="compare-table"><table><tr><th>항목</th>${terms.map(t=>`<th>${t.ko}</th>`).join("")}</tr>${rows.map(r=>`<tr><td>${r.key}</td>${terms.map(t=>`<td>${r.fn(t)}</td>`).join("")}</tr>`).join("")}</table></div>`;
+function updateStudyStreak(){
+  const today=new Date().toDateString();
+  const cur=JSON.parse(localStorage.getItem(studyKey('streak'))||'{"count":0,"lastDate":""}');
+  const yd=new Date(Date.now()-86400000).toDateString();
+  const nd={count:cur.lastDate===yd?cur.count+1:cur.lastDate===today?cur.count:1, lastDate:today};
+  localStorage.setItem(studyKey('streak'),JSON.stringify(nd));
+  return nd;
 }
-document.addEventListener("click",e=>{[1,2,3].forEach(n=>{const s=document.getElementById("cmpSuggest"+n);if(s&&!s.contains(e.target)&&e.target.id!=="cmpInput"+n)s.style.display="none";});});
+function getTotalStudied(){try{return parseInt(localStorage.getItem(studyKey('total'))||'0');}catch(e){return 0;}}
+function addTotalStudied(n){localStorage.setItem(studyKey('total'),getTotalStudied()+n);}
+
+// 간격 반복: 어려움/보통으로 표시된 용어 불러오기
+function getSpacedTerms(){
+  try{return JSON.parse(localStorage.getItem(studyKey('spaced'))||'[]');}catch(e){return [];}
+}
+function saveSpacedTerm(ko, level){ // level: 'hard' | 'ok'
+  let list=getSpacedTerms();
+  list=list.filter(x=>x.ko!==ko);
+  if(level==='hard'||level==='ok') list.push({ko,level,addedAt:Date.now()});
+  localStorage.setItem(studyKey('spaced'),JSON.stringify(list));
+}
+function clearSpacedTerm(ko){
+  let list=getSpacedTerms().filter(x=>x.ko!==ko);
+  localStorage.setItem(studyKey('spaced'),JSON.stringify(list));
+}
+
+function getStudyPool(){
+  let pool=[...TERMS];
+  if(studyCatFilter!=='all') pool=pool.filter(t=>t.cat===studyCatFilter);
+  // 간격 반복: hard 용어 우선 포함
+  const spaced=getSpacedTerms();
+  const hardKos=spaced.filter(x=>x.level==='hard').map(x=>x.ko);
+  const hardTerms=pool.filter(t=>hardKos.includes(t.ko));
+  const rest=shuffle(pool.filter(t=>!hardKos.includes(t.ko)));
+  return [...hardTerms,...rest].slice(0,STUDY_DAILY_COUNT);
+}
+
+function renderStudy(){
+  const wrap=document.getElementById("studyContent");
+  const streak=getStudyStreak();
+  const spaced=getSpacedTerms();
+  const hardCount=spaced.filter(x=>x.level==='hard').length;
+  const streakHtml=streak.count>0
+    ?`<div class="study-streak"><span class="study-streak-badge">🔥 ${streak.count}일 연속</span><span class="study-streak-label">오늘도 10분!</span></div>`
+    :`<div class="study-streak"><span class="study-streak-label">오늘 첫 공부를 시작해보세요 ☀️</span></div>`;
+
+  if(!studyStarted){
+    const cats=[{key:'all',label:'전체',icon:'📋',color:'#2A2E1E',bg:'#F4F5F0'},...Object.entries(CAT_META).map(([k,v])=>({key:k,label:v.label,icon:v.icon,color:v.color,bg:v.bg}))];
+    const catGrid=cats.map(c=>`<div class="study-cat-btn${studyCatFilter===c.key?' active':''}" onclick="setStudyCat('${c.key}')" style="border-color:${studyCatFilter===c.key?c.color:'#E4E8D4'};background:${studyCatFilter===c.key?c.bg:'#FAFAF8'};"><div style="font-size:16px;margin-bottom:3px;">${c.icon}</div><div style="font-size:10px;font-weight:700;color:${c.color};">${c.label}</div></div>`).join('');
+    const modes=[
+      {key:'flip',icon:'🔄',title:'카드 뒤집기',desc:'가리고 맞히기'},
+      {key:'fill',icon:'✏️',title:'빈칸 채우기',desc:'실무 문장 완성'},
+      {key:'read',icon:'📖',title:'읽고 이해',desc:'깊게 공부하기'}
+    ];
+    const modeGrid=modes.map(m=>`<div class="study-mode-btn${studyMode===m.key?' active':''}" onclick="setStudyMode('${m.key}')"><div class="smb-icon">${m.icon}</div><div class="smb-title">${m.title}</div><div class="smb-desc">${m.desc}</div></div>`).join('');
+    wrap.innerHTML=`
+      <div class="study-header"><h2>☀️ 데일리 공부</h2><p>세 가지 모드로 확실하게 외워보세요.</p></div>
+      ${streakHtml}
+      ${hardCount>0?`<div style="background:#FDECEA;border-radius:8px;padding:9px 14px;font-size:12px;color:#B02828;text-align:center;margin-bottom:12px;max-width:480px;margin-left:auto;margin-right:auto;">🔴 복습 필요 용어 ${hardCount}개 — 우선 출제됩니다</div>`:''}
+      <div style="font-size:12px;color:#5A6040;font-weight:600;margin-bottom:8px;text-align:center;">공부 모드</div>
+      <div class="study-mode-grid">${modeGrid}</div>
+      <div style="font-size:12px;color:#5A6040;font-weight:600;margin-bottom:8px;text-align:center;">카테고리</div>
+      <div class="study-cat-select">${catGrid}</div>
+      <div style="max-width:480px;margin:0 auto;">
+        <button onclick="startStudy()" style="width:100%;background:#2A2E1E;border:none;border-radius:14px;padding:16px 0;font-size:16px;font-weight:700;color:#C8D890;cursor:pointer;font-family:'Noto Sans KR',sans-serif;margin-bottom:10px;">☀️ 공부 시작</button>
+        <div style="text-align:center;font-size:12px;color:#AAB090;font-family:'DM Mono',monospace;">누적 학습 ${getTotalStudied()}개</div>
+      </div>`;
+    return;
+  }
+  if(studyIndex>=studyQueue.length){renderStudyComplete();return;}
+  renderStudyCard();
+}
+
+function renderStudyCard(){
+  const wrap=document.getElementById("studyContent");
+  const t=studyQueue[studyIndex];
+  const pct=Math.round(studyIndex/studyQueue.length*100);
+  const spaced=getSpacedTerms().find(x=>x.ko===t.ko);
+  const spacedBadge=spaced?`<span class="spaced-badge sp-${spaced.level}">${spaced.level==='hard'?'🔴 어려움':'🟡 보통'}</span>`:'';
+  const rels=t.related.slice(0,3).map(r=>`<span class="study-tc-rel">${r}</span>`).join('');
+  const tip=t.tips[0]||'';
+
+  let cardHtml='';
+  if(studyMode==='flip'){
+    flipRevealed=false;
+    cardHtml=`
+      <div style="max-width:480px;margin:0 auto 14px;">
+        <div style="background:#fff;border-radius:20px;border:1.5px solid #E4E8D4;padding:28px;margin-bottom:12px;">
+          <div class="study-tc-cat">${t.catLabel} · ${DIFF_LABEL[getDiff(t)]||'초급'}${spacedBadge}</div>
+          <div style="font-size:15px;color:#5A6040;line-height:1.9;margin-bottom:16px;">${t.def}</div>
+          <div style="height:1px;background:#EEF0E8;margin-bottom:16px;"></div>
+          <div id="flipAnswer" style="display:none;">
+            <div class="study-tc-ko" style="margin-bottom:4px;">${t.ko}</div>
+            <div class="study-tc-en" style="margin-bottom:14px;">${t.en}</div>
+            <div class="study-tc-real"><span style="font-family:'DM Mono',monospace;font-size:9px;color:#8AAA40;display:block;margin-bottom:4px;font-style:normal;">실무 예시</span>${t.exReal.substring(0,120)}${t.exReal.length>120?'…':''}</div>
+            ${tip?`<div class="study-tc-tip" style="margin-top:10px;"><div class="study-tc-tip-label">TIP</div>${tip}</div>`:''}
+            ${rels?`<div class="study-tc-rels" style="margin-top:10px;">${rels}</div>`:''}
+          </div>
+          <button id="flipRevealBtn" onclick="revealFlip()" style="width:100%;background:#F4F5F0;border:1.5px solid #DDE0D0;border-radius:10px;padding:12px 0;font-size:14px;font-weight:700;color:#5A6040;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:all .15s;">
+            👆 탭해서 정답 확인
+          </button>
+        </div>
+        <div id="studyNavFlip" style="display:none;">
+          <div style="text-align:center;font-size:12px;color:#7A8460;margin-bottom:10px;">알고 있었나요?</div>
+          <div class="study-nav">
+            <button class="study-nav-btn study-btn-hard" onclick="studyRate('hard')">🔴 몰랐어요</button>
+            <button class="study-nav-btn study-btn-ok" onclick="studyRate('ok')">🟡 애매해요</button>
+            <button class="study-nav-btn study-btn-easy" onclick="studyRate('easy')">✅ 알았어요!</button>
+          </div>
+        </div>
+      </div>`;
+  } else if(studyMode==='fill'){
+    const koC=t.ko.replace(/\s*\(.*?\)/g,"").trim();
+    const koM=koC.split(/[/\s]/)[0];
+    // 정의 문장에서 용어 빈칸 처리
+    let defBlank=t.def;
+    if(koM.length>1){
+      defBlank=defBlank.replace(new RegExp(koM.replace(/[.*+?^${}()|[\]\\]/g,"\\$&"),"g"),'<span style="display:inline-block;border-bottom:2.5px solid #2A2E1E;min-width:70px;height:22px;"></span>');
+    }
+    const enA=t.en.split(/\s+/).map(w=>w.replace(/[^A-Z]/g,"")).filter(w=>w.length>1).join("|");
+    if(enA){
+      defBlank=defBlank.replace(new RegExp(`\\b(${enA})\\b`,"g"),'<span style="display:inline-block;border-bottom:2.5px solid #2A2E1E;min-width:50px;height:22px;"></span>');
+    }
+    // 레벨별 힌트 결정
+    const fillLevelInfo=[
+      {label:"Lv.1 초급",color:"#3A6810",bg:"#E8F2D8",hint:`💡 힌트: ${t.short}`},
+      {label:"Lv.2 중급",color:"#8A5800",bg:"#FBF3E0",hint:`💡 카테고리: ${t.catLabel}`},
+      {label:"Lv.3 고급",color:"#B02828",bg:"#FDECEA",hint:`💡 힌트 없음 — 실력으로 맞혀보세요`},
+    ];
+    const lvInfo=fillLevelInfo[Math.min(fillLevel-1,2)];
+    const streakBar=fillStreak>0?`<div style="display:flex;align-items:center;gap:6px;margin-bottom:10px;">
+      <span style="font-size:11px;color:#AAB090;">연속 정답</span>
+      ${'<span style="width:8px;height:8px;border-radius:50%;background:#7A9C30;display:inline-block;"></span>'.repeat(Math.min(fillStreak,FILL_LEVEL_UP))}
+      <span style="font-size:11px;color:#7A9C30;">${fillStreak}/${FILL_LEVEL_UP} → 레벨 업</span>
+    </div>`:'';
+    cardHtml=`
+      <div class="fill-card">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+          <div class="study-tc-cat">${t.catLabel} · ${DIFF_LABEL[getDiff(t)]||'초급'}${spacedBadge}</div>
+          <span style="font-size:10px;font-weight:700;padding:3px 10px;border-radius:12px;background:${lvInfo.bg};color:${lvInfo.color};font-family:'DM Mono',monospace;">${lvInfo.label}</span>
+        </div>
+        ${streakBar}
+        <div style="font-size:14px;color:#5A6040;line-height:2;margin-bottom:14px;padding:14px;background:#F7F8F2;border-radius:10px;">${defBlank}</div>
+        <div class="fill-hint-row" style="color:${lvInfo.color};">${lvInfo.hint}</div>
+        <div style="margin-bottom:12px;">
+          <div style="display:flex;gap:8px;">
+            <input class="fill-blank-input" id="fillInp" type="text" placeholder="용어명 입력…" autocomplete="off"
+              style="flex:1;border:2px solid #DDE0D0;border-radius:10px;padding:12px 14px;font-size:14px;font-family:'Noto Sans KR',sans-serif;color:#2A2E1E;outline:none;background:#fff;"
+              onkeydown="if(event.key==='Enter')checkFill()"
+              onfocus="this.style.borderColor='#8AAA40'" onblur="if(!this.disabled)this.style.borderColor='#DDE0D0'">
+            <button onclick="checkFill()" id="fillCheckBtn" style="background:#2A2E1E;border:none;border-radius:10px;padding:12px 16px;font-size:13px;font-weight:700;color:#C8D890;cursor:pointer;font-family:'Noto Sans KR',sans-serif;white-space:nowrap;">확인</button>
+          </div>
+        </div>
+        <div id="fillResult" class="fill-result"></div>
+      </div>
+      <div id="studyNavFill" style="display:none;max-width:480px;margin:0 auto;">
+        <div style="text-align:center;font-size:12px;color:#7A8460;margin-bottom:8px;">얼마나 알고 있었나요?</div>
+        <div class="study-nav">
+          <button class="study-nav-btn study-btn-hard" onclick="studyRate('hard')">🔴 어려워요</button>
+          <button class="study-nav-btn study-btn-ok" onclick="studyRate('ok')">🟡 애매해요</button>
+          <button class="study-nav-btn study-btn-easy" onclick="studyRate('easy')">✅ 알겠어요</button>
+        </div>
+      </div>`;
+  } else { // read
+    cardHtml=`
+      <div style="background:#fff;border-radius:20px;border:1.5px solid #E4E8D4;padding:28px;max-width:480px;margin:0 auto 14px;">
+        <div class="study-tc-cat">${t.catLabel} · ${DIFF_LABEL[getDiff(t)]||'초급'}${spacedBadge}</div>
+        <div class="study-tc-ko">${t.ko}</div>
+        <div class="study-tc-en">${t.en}</div>
+        <div class="study-tc-divider"></div>
+        <div class="study-tc-def">${t.def}</div>
+        <div class="study-tc-real"><span style="font-family:'DM Mono',monospace;font-size:9px;color:#8AAA40;display:block;margin-bottom:4px;font-style:normal;">실무 예시</span>${t.exReal.substring(0,150)}${t.exReal.length>150?'…':''}</div>
+        ${tip?`<div class="study-tc-tip"><div class="study-tc-tip-label">TIP</div>${tip}</div>`:''}
+        ${rels?`<div class="study-tc-rels">${rels}</div>`:''}
+      </div>
+      <div class="study-nav">
+        <button class="study-nav-btn study-btn-hard" onclick="studyRate('hard')">🔴 어려워요</button>
+        <button class="study-nav-btn study-btn-ok" onclick="studyRate('ok')">🟡 애매해요</button>
+        <button class="study-nav-btn study-btn-easy" onclick="studyRate('easy')">✅ 알겠어요</button>
+      </div>`;
+  }
+
+  wrap.innerHTML=`
+    <div style="display:flex;align-items:center;justify-content:space-between;max-width:480px;margin:0 auto 8px;">
+      <button onclick="goStudyHome()" style="background:none;border:1px solid #DDE0D0;border-radius:8px;padding:5px 12px;font-size:12px;color:#7A8460;cursor:pointer;font-family:'Noto Sans KR',sans-serif;display:flex;align-items:center;gap:4px;">← 처음으로</button>
+      <div style="font-size:12px;color:#7A8460;">
+        ${studyMode==='flip'?'🔄 카드 뒤집기':studyMode==='fill'?'✏️ 빈칸 채우기':'📖 읽고 이해'}
+        &nbsp;|&nbsp; ${studyIndex+1} / ${studyQueue.length}
+      </div>
+    </div>
+    <div class="study-progress-bar"><div class="study-progress-fill" style="width:${pct}%"></div></div>
+    <div class="study-progress-txt">${pct}% 완료</div>
+    ${cardHtml}`;
+}
+
+function revealFlip(){
+  if(flipRevealed) return;
+  flipRevealed=true;
+  const btn=document.getElementById('flipRevealBtn');
+  const ans=document.getElementById('flipAnswer');
+  const nav=document.getElementById('studyNavFlip');
+  if(btn) btn.style.display='none';
+  if(ans) ans.style.display='block';
+  if(nav){
+    nav.style.display='block';
+    setTimeout(()=>nav.scrollIntoView({behavior:'smooth',block:'nearest'}),80);
+  }
+}
+
+function goStudyHome(){
+  studyStarted=false;
+  flipRevealed=false;
+  renderStudy();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function checkFill(){
+  const inp=document.getElementById('fillInp');
+  if(!inp||inp.disabled) return;
+  const t=studyQueue[studyIndex];
+  const koC=t.ko.replace(/\s*\(.*?\)/g,"").toLowerCase().trim();
+  const val=inp.value.trim().toLowerCase();
+  const enA=t.en.split(/\s+/).map(w=>w.replace(/[^A-Z]/g,"")).filter(w=>w.length>1).join("|").toLowerCase();
+  const ok=val===koC||val===t.ko.toLowerCase()||(enA&&val===enA)||koC.includes(val)||val.includes(koC);
+  const res=document.getElementById('fillResult');
+  const btn=document.getElementById('fillCheckBtn');
+  inp.disabled=true;
+  inp.style.borderColor=ok?'#7A9C30':'#B02828';
+  inp.style.background=ok?'#EEF4E4':'#FDECEA';
+  inp.style.color=ok?'#3A6020':'#B02828';
+  // 레벨 업 처리
+  let levelMsg='';
+  if(ok){
+    studyCorrect++;
+    fillStreak++;
+    if(fillStreak>=FILL_LEVEL_UP&&fillLevel<3){
+      fillLevel++;
+      fillStreak=0;
+      levelMsg=`<div style="margin-top:8px;background:#2A2E1E;color:#C8D890;border-radius:8px;padding:8px 12px;font-size:12px;font-weight:700;text-align:center;">🆙 레벨 업! Lv.${fillLevel}로 상승 — 힌트가 줄어듭니다</div>`;
+    }
+  } else {
+    fillStreak=Math.max(0,fillStreak-1);
+  }
+  res.className='fill-result '+(ok?'ok':'no');
+  res.innerHTML=(ok?`✓ 정답! <b>${t.ko}</b>`:`✗ 오답. 정답은 <b>${t.ko}</b> — ${t.short}`)+levelMsg;
+  if(btn) btn.style.display='none';
+  const nav=document.getElementById('studyNavFill');
+  if(nav){
+    nav.style.display='block';
+    setTimeout(()=>nav.scrollIntoView({behavior:'smooth',block:'nearest'}),100);
+  }
+}
+
+function studyRate(level){ // hard | ok | easy
+  const t=studyQueue[studyIndex];
+  if(level==='easy'){clearSpacedTerm(t.ko);studyCorrect++;}
+  else{saveSpacedTerm(t.ko,level);}
+  studyIndex++;
+  flipRevealed=false;
+  renderStudy();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function setStudyMode(m){studyMode=m;renderStudy();}
+function setStudyCat(cat){studyCatFilter=cat;renderStudy();}
+function startStudy(){studyQueue=getStudyPool();studyIndex=0;studyCorrect=0;studyStarted=true;flipRevealed=false;fillStreak=0;fillLevel=1;renderStudy();window.scrollTo({top:0,behavior:'smooth'});}
+function studyAgain(){studyQueue=getStudyPool();studyIndex=0;studyCorrect=0;flipRevealed=false;renderStudy();window.scrollTo({top:0,behavior:'smooth'});}
+
+function renderStudyComplete(){
+  addTotalStudied(studyCorrect);
+  const sd=updateStudyStreak();
+  const pct=Math.round(studyCorrect/studyQueue.length*100);
+  const msg=pct===100?"완벽해요! 오늘도 한 단계 성장했습니다 🎉":pct>=80?"훌륭해요! 거의 다 익혔어요 💪":pct>=50?"잘 하고 있어요! 꾸준히 하면 금방 늘어요 📈":"오늘도 시작했다는 게 중요해요. 내일도 화이팅! ✨";
+  const hardCount=getSpacedTerms().filter(x=>x.level==='hard').length;
+  document.getElementById("studyContent").innerHTML=`
+    <div class="study-complete">
+      <div style="font-size:52px;margin-bottom:14px;">🎉</div>
+      <div style="font-size:20px;font-weight:900;color:#2A2E1E;margin-bottom:6px;">오늘의 공부 완료!</div>
+      <div style="font-size:13px;color:#7A8460;line-height:1.7;margin-bottom:16px;">${msg}</div>
+      <div class="study-complete-stats">
+        <div class="study-stat"><div class="study-stat-num">${studyCorrect}</div><div class="study-stat-label">완료</div></div>
+        <div class="study-stat"><div class="study-stat-num">${sd.count}</div><div class="study-stat-label">연속 🔥</div></div>
+        <div class="study-stat"><div class="study-stat-num">${getTotalStudied()}</div><div class="study-stat-label">누적 학습</div></div>
+      </div>
+      ${hardCount>0?`<div style="background:#FDECEA;border-radius:10px;padding:11px 16px;font-size:13px;color:#B02828;margin-bottom:16px;">🔴 어려운 용어 <b>${hardCount}개</b> — 다음 공부 때 우선 출제돼요</div>`:''}
+      <button onclick="studyAgain()" style="background:#2A2E1E;border:none;border-radius:12px;padding:14px 0;font-size:14px;font-weight:700;color:#C8D890;cursor:pointer;font-family:'Noto Sans KR',sans-serif;margin-bottom:10px;width:100%;max-width:320px;display:block;margin-left:auto;margin-right:auto;">한 번 더 공부하기</button>
+      <button onclick="switchTab('quiz')" style="background:#F4F5F0;border:1px solid #DDE0D0;border-radius:12px;padding:12px 0;font-size:14px;font-weight:600;color:#5A6040;cursor:pointer;font-family:'Noto Sans KR',sans-serif;width:100%;max-width:320px;display:block;margin:0 auto;">📝 테스트로 확인하기</button>
+    </div>`;}
 
 // ── CALCULATOR ──
 const CALCS=[
@@ -1561,13 +1899,14 @@ function setBmTab(tab){activeBmTab=tab;renderBenchmark();}
 
 // ── HISTORY ──
 const HISTORY=[{year:"1950~60s",title:"ATL 마케팅의 황금기",color:"#B02828",desc:"TV·라디오·신문이 주류 광고 채널로 자리잡으며 대규모 브랜드 캠페인이 시작됐습니다. P&G, 코카콜라 등 대기업이 마케팅 예산의 대부분을 ATL에 집중하던 시대입니다.",tags:["ATL","TV광고","브랜딩","마스마케팅"]},{year:"1970~80s",title:"BTL과 DM 마케팅 부상",color:"#8A5800",desc:"비용 효율성에 대한 요구가 커지면서 타겟형 BTL 마케팅이 등장했습니다. 우편 DM과 텔레마케팅이 고객과 직접 소통하는 채널로 부상했습니다.",tags:["BTL","DM","텔레마케팅","CRM"]},{year:"1990s",title:"인터넷의 등장과 디지털 마케팅 태동",color:"#2040A0",desc:"월드와이드웹의 등장으로 배너 광고, 이메일 마케팅, 검색 광고의 기초가 형성됐습니다. 최초의 배너 광고가 AT&T에 의해 1994년 선보였습니다.",tags:["배너광고","이메일마케팅","SEO","초기검색광고"]},{year:"2000s 초반",title:"SEM·SEO·퍼포먼스 마케팅의 본격화",color:"#3A6810",desc:"구글 애드워즈 출시로 키워드 광고와 CPC 과금 방식이 대중화됐습니다. ROI를 실시간으로 측정하는 퍼포먼스 마케팅이 주류로 자리잡기 시작했습니다.",tags:["Google Ads","SEM","CPC","퍼포먼스마케팅"]},{year:"2004~2009",title:"소셜 미디어 마케팅 시대 개막",color:"#6A2090",desc:"Facebook, YouTube, Twitter 등이 연달아 등장하면서 브랜드와 소비자가 양방향으로 소통하는 새로운 마케팅 패러다임이 형성됐습니다.",tags:["SNS마케팅","소셜미디어","콘텐츠마케팅","바이럴"]},{year:"2010s 초반",title:"모바일 마케팅과 앱 광고의 부상",color:"#1A6850",desc:"스마트폰 보급 확대로 모바일 퍼스트 전략이 필수가 됐습니다. 앱 설치 광고(CPI), 모바일 리타겟팅, 위치 기반 광고가 새로운 카테고리로 자리잡았습니다.",tags:["모바일마케팅","CPI","앱광고","위치기반광고"]},{year:"2012~2016",title:"데이터 드리븐 마케팅과 그로스해킹",color:"#B02828",desc:"에어비앤비, 드롭박스, 우버 등 스타트업들이 데이터 기반의 빠른 실험으로 폭발적 성장을 이뤄내면서 퍼포먼스 중심의 마케팅 문화가 전 세계로 확산됐습니다.",tags:["그로스해킹","A/B테스트","AARRR","데이터드리븐"]},{year:"2016~2019",title:"인플루언서 마케팅과 콘텐츠 마케팅 전성기",color:"#8A5800",desc:"인스타그램·유튜브 인플루언서가 새로운 광고 채널로 부상했습니다. HubSpot이 주도한 인바운드 마케팅과 콘텐츠 마케팅이 B2B·B2C 전반으로 확산됐습니다.",tags:["인플루언서","UGC","콘텐츠마케팅","인바운드"]},{year:"2020~2022",title:"쿠키리스 전환과 퍼스트파티 데이터 시대",color:"#2040A0",desc:"애플 ATT 정책과 구글의 서드파티 쿠키 폐기 예고로 디지털 광고 생태계가 큰 변화를 맞았습니다. CDP 구축과 퍼스트파티 데이터 확보가 마케팅 핵심 과제로 부상했습니다.",tags:["쿠키리스","퍼스트파티데이터","CDP","개인정보"]},{year:"2022~현재",title:"생성형 AI와 마케팅 자동화의 혁명",color:"#3A6810",desc:"ChatGPT 등 생성형 AI의 등장으로 콘텐츠 제작, 광고 카피, 퍼소나 분석 등 마케팅 전 영역에서 AI 도구 활용이 폭발적으로 증가했습니다. GEO(생성형 엔진 최적화)라는 새로운 개념도 등장했습니다.",tags:["생성형AI","ChatGPT","GEO","마케팅자동화"]}];
-function renderHistory(){const colors=["#B02828","#8A5800","#2040A0","#3A6810","#6A2090","#1A6850"];document.getElementById("historyTimeline").innerHTML=HISTORY.map((h,i)=>`<div class="tl-item"><div class="tl-dot" style="background:${colors[i%6]};box-shadow:0 0 0 3px ${colors[i%6]}33;"></div><div class="tl-year">${h.year}</div><div class="tl-title">${h.title}</div><div class="tl-desc">${h.desc}</div><div class="tl-tags">${h.tags.map(t=>`<span class="tl-tag">${t}</span>`).join("")}</div></div>`).join("");}
+function renderHistory(){if(!document.getElementById('historyTimeline'))return;const colors=["#B02828","#8A5800","#2040A0","#3A6810","#6A2090","#1A6850"];document.getElementById("historyTimeline").innerHTML=HISTORY.map((h,i)=>`<div class="tl-item"><div class="tl-dot" style="background:${colors[i%6]};box-shadow:0 0 0 3px ${colors[i%6]}33;"></div><div class="tl-year">${h.year}</div><div class="tl-title">${h.title}</div><div class="tl-desc">${h.desc}</div><div class="tl-tags">${h.tags.map(t=>`<span class="tl-tag">${t}</span>`).join("")}</div></div>`).join("");}
 
 // ── TREND ──
 function loadTrends(){try{const s=localStorage.getItem("mktdict_trends");if(s)return JSON.parse(s);}catch(e){}return DEFAULT_TRENDS.map((t,i)=>({...t,id:i}));}
 function saveTrends(a){try{localStorage.setItem("mktdict_trends",JSON.stringify(a));}catch(e){}}
 let TRENDS=loadTrends();
 function renderTrends(){
+  if(!document.getElementById('trendGrid'))return;
   const filtered=trendTagFilter?TRENDS.filter(t=>t.tags.includes(trendTagFilter)):TRENDS;
   const allTags=[...new Set(TRENDS.flatMap(t=>t.tags))];
   const tagHtml=`<span class="t-tag${!trendTagFilter?" active":""}" onclick="filterTag(null)">전체</span>`+allTags.map(tag=>`<span class="t-tag${trendTagFilter===tag?" active":""}" onclick="filterTag('${tag}')">${tag}</span>`).join("");
@@ -1883,7 +2222,6 @@ function copyShareLink(){copyText(window._shareUrl||location.href,"공유 링크
     TERMS.sort(sortGanada);
     renderTabs();
     switchTab('terms');
-    renderTrends();
     document.getElementById('profileOverlay').classList.remove('hidden');
   }
 })();
