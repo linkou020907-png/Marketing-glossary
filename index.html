@@ -409,7 +409,88 @@ body{background:#F4F5F0;color:#2A2E1E;font-family:'Noto Sans KR',sans-serif;font
 .print-btn{background:#F4F5F0;border:1px solid #DDE0D0;border-radius:8px;padding:8px 14px;font-size:13px;color:#5A6040;cursor:pointer;font-family:'Noto Sans KR',sans-serif;font-weight:500;transition:all .15s;}
 .print-btn:hover{background:#2A2E1E;color:#C8D890;border-color:#2A2E1E;}
 @media print{.header,.nav,.hero,.print-btn,.tr-bm,.quiz-wrap,.add-form-wrap,.nav-search-wrap,.recent-bar,.ganada-bar,.cat-filter-bar{display:none!important;}body{background:#fff;font-size:12px;}.s-card{break-inside:avoid;border:1px solid #ccc;margin-bottom:8px;}.s-card-body{display:grid!important;}.main{padding:0;}}
-@media(max-width:768px){.hero,.header{padding-left:20px;padding-right:20px;}.nav-inner,.main{padding-left:20px;padding-right:20px;}.hero-inner h1{font-size:34px;}.nav-search-wrap{display:none;}.quiz-cat-grid{grid-template-columns:repeat(3,1fr);}.level-grid{grid-template-columns:1fr 1fr;}.s-card.open .s-card-body{grid-template-columns:1fr;}.trend-grid{grid-template-columns:1fr;}.calc-tab-bar{overflow-x:auto;}.form-grid{grid-template-columns:1fr;}}
+@media(max-width:768px){
+  .header{padding:0 14px;}
+  .header-inner{height:50px;}
+  .logo{font-size:11px;letter-spacing:1px;}
+  .header-desc{display:none;}
+  #currentProfileName{display:none;}
+  .hero{padding:18px 14px 22px;}
+  .hero-inner h1{font-size:26px;letter-spacing:-1px;margin-bottom:4px;}
+  .hero-inner p{font-size:11px;}
+  .nav-inner{padding:0;}
+  .nav-row{padding:0 2px;}
+  .tab{padding:11px 8px;font-size:11px;}
+  .nav-search-wrap{display:none;}
+  .main{padding:14px 12px 100px;}
+  .search-grid{grid-template-columns:1fr;gap:8px;}
+  .s-card.open{grid-column:auto;}
+  .s-card-top{padding:12px 14px;}
+  .s-card-ko{font-size:13px;}
+  .s-card.open .s-card-body{grid-template-columns:1fr;padding:14px;}
+  .cat-filter-bar{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-bottom:2px;}
+  .cat-filter-bar::-webkit-scrollbar{display:none;}
+  .cat-filter-btn{flex-shrink:0;padding:5px 11px;font-size:11px;white-space:nowrap;}
+  .ganada-bar{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding:8px 8px;gap:1px;}
+  .ganada-bar::-webkit-scrollbar{display:none;}
+  .gana-btn{padding:3px 6px;font-size:11px;}
+  .recent-bar{padding:10px 12px;}
+  .recent-tags{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;}
+  .recent-tags::-webkit-scrollbar{display:none;}
+  .recent-tag{flex-shrink:0;font-size:11px;padding:3px 8px;}
+  .diff-badge{font-size:8px;padding:1px 5px;}
+  .calc-tab-bar{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;}
+  .calc-tab-bar::-webkit-scrollbar{display:none;}
+  .calc-tab{flex-shrink:0;padding:9px 12px;font-size:11px;}
+  .calc-panel{border-radius:10px;padding:18px 14px;max-width:100%;}
+  .calc-run{font-size:13px;}
+  .bm-grid{grid-template-columns:1fr 1fr;}
+  .bm-tab-bar{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;}
+  .bm-tab-bar::-webkit-scrollbar{display:none;}
+  .quiz-cat-grid{grid-template-columns:repeat(4,1fr);gap:5px;}
+  .quiz-cat-btn{padding:8px 4px;}
+  .quiz-cat-icon{font-size:15px;margin-bottom:2px;}
+  .quiz-cat-name{font-size:9px;}
+  .level-grid{grid-template-columns:1fr 1fr;gap:8px;}
+  .level-card{padding:14px 8px;}
+  .level-icon{font-size:20px;margin-bottom:5px;}
+  .level-name{font-size:11px;}
+  .level-desc{font-size:9px;}
+  .quiz-wrap{padding:0;}
+  .quiz-card{padding:18px 14px;}
+  .quiz-def-box{font-size:13px;padding:12px 14px;}
+  .quiz-hint{font-size:12px;}
+  .quiz-input-row{gap:6px;}
+  .quiz-input{font-size:14px;padding:10px 14px;}
+  .quiz-submit{padding:10px 14px;font-size:13px;}
+  .quiz-count-btn{padding:5px 10px;font-size:11px;}
+  .quiz-nav{flex-wrap:wrap;}
+  .wn-card-top{padding:12px 12px;}
+  .profile-box{padding:22px 16px;}
+  .profile-title{font-size:17px;}
+  .profile-sub{font-size:12px;margin-bottom:18px;}
+  .update-banner.show{padding:10px 14px;}
+  .update-banner-title{font-size:12px;}
+  .update-banner-tags{gap:4px;}
+  .update-term-tag{font-size:10px;padding:2px 6px;}
+  .today-box{padding:22px 18px;}
+  .share-modal{padding:22px 16px;}
+  .study-mode-grid{grid-template-columns:repeat(3,1fr);gap:6px;}
+  .study-mode-btn{padding:10px 6px;}
+  .smb-icon{font-size:18px;margin-bottom:4px;}
+  .smb-title{font-size:10px;}
+  .smb-desc{font-size:9px;}
+  .study-cat-select{grid-template-columns:repeat(4,1fr);gap:5px;}
+  .study-cat-btn{padding:7px 4px;}
+  .study-nav{gap:6px;}
+  .study-nav-btn{font-size:12px;padding:11px 0;}
+  .study-complete-stats{gap:7px;}
+  .study-stat{padding:12px 6px;}
+  .study-stat-num{font-size:18px;}
+  .study-stat-label{font-size:9px;}
+  .rel-modal{padding:22px 16px;}
+  .sm-url-box{font-size:11px;}
+}
 </style>
 </head>
 <body>
@@ -1185,7 +1266,14 @@ const DEFAULT_TRENDS = [
 // ── CONFIG ──
 const CAT_META={paid:{label:"퍼포먼스",color:"#B02828",bg:"#FDECEA",icon:"📊"},data:{label:"데이터",color:"#8A5800",bg:"#FBF3E0",icon:"📈"},content:{label:"콘텐츠",color:"#2040A0",bg:"#E4EAF8",icon:"✍️"},growth:{label:"그로스",color:"#3A6810",bg:"#E8F2D8",icon:"🚀"},brand:{label:"브랜드",color:"#6A2090",bg:"#F5EEF8",icon:"🎨"},crm:{label:"CRM",color:"#1A6850",bg:"#E8F5F0",icon:"🤝"}};
 const BADGE_CLS={growth:"b-growth",content:"b-content",data:"b-data",brand:"b-brand",paid:"b-paid",crm:"b-crm"};
-const TABS=[{key:"terms",label:"📖 용어사전"},{key:"bookmark",label:"⭐ 북마크"},{key:"wrongnote",label:"📒 오답노트"},{key:"study",label:"☀️ 데일리 공부"},{key:"calc",label:"🧮 계산기"},{key:"quiz",label:"📝 테스트"}];
+const TABS=[
+  {key:"terms",   label:"📖 용어사전", mLabel:"📖 용어"},
+  {key:"bookmark",label:"⭐ 북마크",   mLabel:"⭐ 북마크"},
+  {key:"wrongnote",label:"📒 오답노트", mLabel:"📒 오답"},
+  {key:"study",  label:"☀️ 데일리 공부", mLabel:"☀️ 공부"},
+  {key:"calc",   label:"🧮 계산기",    mLabel:"🧮 계산"},
+  {key:"quiz",   label:"📝 테스트",    mLabel:"📝 테스트"}
+];
 const GANADA=["ㄱ","ㄴ","ㄷ","ㄹ","ㅁ","ㅂ","ㅅ","ㅇ","ㅈ","ㅊ","ㅋ","ㅌ","ㅍ","ㅎ","A-Z"];
 const GANADA_MAP={ㄱ:/^[가-깋]/,ㄴ:/^[나-닣]/,ㄷ:/^[다-딯]/,ㄹ:/^[라-맇]/,ㅁ:/^[마-밓]/,ㅂ:/^[바-빟]/,ㅅ:/^[사-싷]/,ㅇ:/^[아-잏]/,ㅈ:/^[자-짛]/,ㅊ:/^[차-칳]/,ㅋ:/^[카-킿]/,ㅌ:/^[타-팋]/,ㅍ:/^[파-핗]/,ㅎ:/^[하-힣]/,"A-Z":/^[A-Za-z]/};
 const DIFF_MAP={CPA:"mid",CPC:"basic",CPM:"basic",CPL:"mid",ROAS:"mid",ROI:"mid","CTR":"basic","임프레션 (Impression)":"basic","리치 (Reach)":"basic","빈도 (Frequency)":"mid","광고 소재 (Creative)":"mid","유료 트래픽 (Paid Traffic)":"basic","룩어라이크 (Lookalike)":"adv","오디언스 (Audience)":"mid","네이티브 광고":"basic","리타겟팅":"mid","랜딩페이지 (LP)":"basic","SEM":"basic","퍼포먼스 마케팅":"mid","제휴 마케팅 (Affiliate)":"mid","CPS":"mid","KPI":"basic","전환율 (CVR)":"basic","A/B 테스트":"mid","LTV / CLV":"mid","CAC":"mid","UV":"basic","PV (페이지뷰)":"basic","세션 (Session)":"basic","바운스율 (Bounce Rate)":"basic","트래픽":"basic","UTM":"mid","어트리뷰션":"adv","픽셀 (Pixel)":"mid","DAU / WAU / MAU":"basic","리텐션":"mid","ARPU":"mid","CDP":"adv","퍼스트파티 데이터":"mid","OKR":"mid","TAM / SAM / SOM":"mid","코호트 분석":"adv","북극성 지표 (NSM)":"adv","퍼널 분석":"mid","체류 시간 (Duration Time)":"basic","SEO":"basic","콘텐츠 마케팅":"basic","참여율 (ER)":"basic","UGC":"basic","인플루언서 마케팅":"basic","오가닉":"basic","CTA":"basic","뉴스레터":"basic","콘텐츠 캘린더":"basic","소셜 리스닝":"mid","퍼널 (Funnel)":"basic","그로스 해킹":"mid","AARRR":"mid","TOFU/MOFU/BOFU":"mid","그로스 마케팅":"mid","PMF":"adv","바이럴":"basic","바이럴 계수 (K-factor)":"adv","활성화율":"mid","AHA 모먼트":"adv","리퍼럴 마케팅":"mid","브랜드 보이스":"basic","포지셔닝":"mid","퍼소나 (Persona)":"basic","ATL/BTL":"basic","인지도 (Awareness)":"basic","브랜드 아이덴티티":"basic","브랜드 로열티":"mid","D2C":"mid","옴니채널":"mid","USP":"mid","가치 제안":"mid","STP 전략":"mid","SWOT 분석":"basic","4P / 마케팅 믹스":"basic","AIDMA":"basic","OOH (옥외광고)":"basic","IMC":"mid","PR (홍보)":"basic","GTM 전략":"adv","제품 수명주기 (PLC)":"mid","카니발라이제이션":"adv","AE / AD / CD / CW":"basic","CRM":"basic","리드 (Lead)":"basic","리드 너처링":"mid","MQL / SQL":"mid","고객 여정 (CJM)":"mid","ABM":"adv","드립 캠페인":"mid","업셀링 / 크로스셀링":"mid","윈백 캠페인":"mid","고객 온보딩":"mid","로열티 프로그램":"mid","NPS":"basic","VOC":"basic"};
@@ -1355,7 +1443,8 @@ function fbCopy(text,msg,icon){const ta=document.createElement("textarea");ta.va
 
 // ── TABS ──
 function renderTabs(){
-  document.getElementById("navTabs").innerHTML=TABS.map(t=>`<button class="tab${activeTab===t.key?" active":""}${!["terms"].includes(t.key)?" tab-special":""}" onclick="switchTab('${t.key}')">${t.label}</button>`).join("");
+  const isMobile=window.innerWidth<=768;
+  document.getElementById("navTabs").innerHTML=TABS.map(t=>`<button class="tab${activeTab===t.key?" active":""}${!["terms"].includes(t.key)?" tab-special":""}" onclick="switchTab('${t.key}')">${isMobile&&t.mLabel?t.mLabel:t.label}</button>`).join("");
 }
 function switchTab(key){
   activeTab=key;openTermId=null;searchQ="";
