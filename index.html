@@ -390,7 +390,33 @@ body{background:#F4F5F0;color:#2A2E1E;font-family:'Noto Sans KR',sans-serif;font
 .current-profile-btn{background:none;border:1px solid #3A5030;border-radius:6px;padding:5px 12px;font-size:11px;color:#A8B878;cursor:pointer;font-family:'DM Mono',monospace;display:flex;align-items:center;gap:6px;transition:all .15s;}
 .current-profile-btn:hover{background:#3A5030;}
 
-/* ── UPDATE BANNER ── */
+/* ── 관리자 탭 ── */
+.tab-admin{color:#D4A020!important;font-weight:700!important;}
+.tab-admin.active{border-bottom-color:#D4A020!important;}
+/* ── 관리자 대시보드 ── */
+.admin-header{margin-bottom:24px;}
+.admin-header h2{font-size:20px;font-weight:900;color:#2A2E1E;margin-bottom:4px;}
+.admin-header p{font-size:13px;color:#7A8460;}
+.admin-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-bottom:24px;}
+.admin-card{background:#fff;border:1px solid #E4E8D4;border-radius:14px;padding:20px;}
+.admin-card-title{font-size:11px;font-family:'DM Mono',monospace;color:#AAB090;letter-spacing:2px;margin-bottom:14px;}
+.admin-stat-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid #F4F5F0;}
+.admin-stat-row:last-child{border-bottom:none;}
+.admin-stat-label{font-size:13px;color:#5A6040;display:flex;align-items:center;gap:8px;}
+.admin-stat-val{font-size:14px;font-weight:700;color:#2A2E1E;font-family:'DM Mono',monospace;}
+.admin-stat-badge{font-size:10px;padding:2px 8px;border-radius:10px;font-family:'DM Mono',monospace;}
+.admin-user-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid #F4F5F0;}
+.admin-user-row:last-child{border-bottom:none;}
+.admin-user-avatar{width:32px;height:32px;border-radius:50%;background:#C8D890;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#2A2E1E;flex-shrink:0;}
+.admin-user-name{font-size:13px;font-weight:700;color:#2A2E1E;flex:1;}
+.admin-user-meta{font-size:11px;color:#AAB090;font-family:'DM Mono',monospace;}
+.admin-rank-row{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;background:#F4F5F0;margin-bottom:6px;}
+.admin-rank-num{font-family:'DM Mono',monospace;font-size:12px;color:#AAB090;width:20px;}
+.admin-rank-name{font-size:13px;font-weight:700;flex:1;}
+.admin-rank-score{font-family:'DM Mono',monospace;font-size:12px;color:#7A9C30;}
+.admin-rank-level{font-size:10px;padding:2px 7px;border-radius:8px;background:#EEF4E4;color:#3A6020;font-family:'DM Mono',monospace;}
+.admin-empty{text-align:center;padding:30px 0;color:#AAB090;font-size:13px;}
+@media(max-width:768px){.admin-grid{grid-template-columns:1fr;}}
 .update-banner{background:linear-gradient(90deg,#2A2E1E 0%,#3A5020 100%);padding:0;max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s ease;}
 .update-banner.show{max-height:200px;padding:12px 40px;}
 .update-banner-inner{max-width:1100px;margin:0 auto;display:flex;align-items:flex-start;gap:16px;}
@@ -630,7 +656,9 @@ body{background:#F4F5F0;color:#2A2E1E;font-family:'Noto Sans KR',sans-serif;font
   <div id="studySection" style="display:none;">
     <div id="studyContent"></div>
   </div>
-    <div id="quizSection" style="display:none;">
+    <div id="adminSection" style="display:none;"></div>
+
+  <div id="quizSection" style="display:none;">
     <div class="quiz-wrap">
       <div id="quizStart" class="quiz-card">
         <div style="text-align:center;margin-bottom:22px;"><div style="font-size:22px;font-weight:900;color:#2A2E1E;margin-bottom:6px;">📝 마케팅 용어 테스트</div><div style="font-size:13px;color:#7A8460;">카테고리와 레벨을 선택하세요</div></div>
@@ -1266,6 +1294,7 @@ const DEFAULT_TRENDS = [
 // ── CONFIG ──
 const CAT_META={paid:{label:"퍼포먼스",color:"#B02828",bg:"#FDECEA",icon:"📊"},data:{label:"데이터",color:"#8A5800",bg:"#FBF3E0",icon:"📈"},content:{label:"콘텐츠",color:"#2040A0",bg:"#E4EAF8",icon:"✍️"},growth:{label:"그로스",color:"#3A6810",bg:"#E8F2D8",icon:"🚀"},brand:{label:"브랜드",color:"#6A2090",bg:"#F5EEF8",icon:"🎨"},crm:{label:"CRM",color:"#1A6850",bg:"#E8F5F0",icon:"🤝"}};
 const BADGE_CLS={growth:"b-growth",content:"b-content",data:"b-data",brand:"b-brand",paid:"b-paid",crm:"b-crm"};
+const ADMIN_ID = '주주'; // 관리자 계정
 const TABS=[
   {key:"terms",   label:"📖 용어사전", mLabel:"📖 용어"},
   {key:"bookmark",label:"⭐ 북마크",   mLabel:"⭐ 북마크"},
@@ -1274,6 +1303,11 @@ const TABS=[
   {key:"calc",   label:"🧮 계산기",    mLabel:"🧮 계산"},
   {key:"quiz",   label:"📝 테스트",    mLabel:"📝 테스트"}
 ];
+function getTabs(){
+  const base=[...TABS];
+  if(currentProfile===ADMIN_ID) base.push({key:"admin",label:"🔧 관리자",mLabel:"🔧"});
+  return base;
+}
 const GANADA=["ㄱ","ㄴ","ㄷ","ㄹ","ㅁ","ㅂ","ㅅ","ㅇ","ㅈ","ㅊ","ㅋ","ㅌ","ㅍ","ㅎ","A-Z"];
 const GANADA_MAP={ㄱ:/^[가-깋]/,ㄴ:/^[나-닣]/,ㄷ:/^[다-딯]/,ㄹ:/^[라-맇]/,ㅁ:/^[마-밓]/,ㅂ:/^[바-빟]/,ㅅ:/^[사-싷]/,ㅇ:/^[아-잏]/,ㅈ:/^[자-짛]/,ㅊ:/^[차-칳]/,ㅋ:/^[카-킿]/,ㅌ:/^[타-팋]/,ㅍ:/^[파-핗]/,ㅎ:/^[하-힣]/,"A-Z":/^[A-Za-z]/};
 const DIFF_MAP={CPA:"mid",CPC:"basic",CPM:"basic",CPL:"mid",ROAS:"mid",ROI:"mid","CTR":"basic","임프레션 (Impression)":"basic","리치 (Reach)":"basic","빈도 (Frequency)":"mid","광고 소재 (Creative)":"mid","유료 트래픽 (Paid Traffic)":"basic","룩어라이크 (Lookalike)":"adv","오디언스 (Audience)":"mid","네이티브 광고":"basic","리타겟팅":"mid","랜딩페이지 (LP)":"basic","SEM":"basic","퍼포먼스 마케팅":"mid","제휴 마케팅 (Affiliate)":"mid","CPS":"mid","KPI":"basic","전환율 (CVR)":"basic","A/B 테스트":"mid","LTV / CLV":"mid","CAC":"mid","UV":"basic","PV (페이지뷰)":"basic","세션 (Session)":"basic","바운스율 (Bounce Rate)":"basic","트래픽":"basic","UTM":"mid","어트리뷰션":"adv","픽셀 (Pixel)":"mid","DAU / WAU / MAU":"basic","리텐션":"mid","ARPU":"mid","CDP":"adv","퍼스트파티 데이터":"mid","OKR":"mid","TAM / SAM / SOM":"mid","코호트 분석":"adv","북극성 지표 (NSM)":"adv","퍼널 분석":"mid","체류 시간 (Duration Time)":"basic","SEO":"basic","콘텐츠 마케팅":"basic","참여율 (ER)":"basic","UGC":"basic","인플루언서 마케팅":"basic","오가닉":"basic","CTA":"basic","뉴스레터":"basic","콘텐츠 캘린더":"basic","소셜 리스닝":"mid","퍼널 (Funnel)":"basic","그로스 해킹":"mid","AARRR":"mid","TOFU/MOFU/BOFU":"mid","그로스 마케팅":"mid","PMF":"adv","바이럴":"basic","바이럴 계수 (K-factor)":"adv","활성화율":"mid","AHA 모먼트":"adv","리퍼럴 마케팅":"mid","브랜드 보이스":"basic","포지셔닝":"mid","퍼소나 (Persona)":"basic","ATL/BTL":"basic","인지도 (Awareness)":"basic","브랜드 아이덴티티":"basic","브랜드 로열티":"mid","D2C":"mid","옴니채널":"mid","USP":"mid","가치 제안":"mid","STP 전략":"mid","SWOT 분석":"basic","4P / 마케팅 믹스":"basic","AIDMA":"basic","OOH (옥외광고)":"basic","IMC":"mid","PR (홍보)":"basic","GTM 전략":"adv","제품 수명주기 (PLC)":"mid","카니발라이제이션":"adv","AE / AD / CD / CW":"basic","CRM":"basic","리드 (Lead)":"basic","리드 너처링":"mid","MQL / SQL":"mid","고객 여정 (CJM)":"mid","ABM":"adv","드립 캠페인":"mid","업셀링 / 크로스셀링":"mid","윈백 캠페인":"mid","고객 온보딩":"mid","로열티 프로그램":"mid","NPS":"basic","VOC":"basic"};
@@ -1444,15 +1478,15 @@ function fbCopy(text,msg,icon){const ta=document.createElement("textarea");ta.va
 // ── TABS ──
 function renderTabs(){
   const isMobile=window.innerWidth<=768;
-  document.getElementById("navTabs").innerHTML=TABS.map(t=>`<button class="tab${activeTab===t.key?" active":""}${!["terms"].includes(t.key)?" tab-special":""}" onclick="switchTab('${t.key}')">${isMobile&&t.mLabel?t.mLabel:t.label}</button>`).join("");
+  document.getElementById("navTabs").innerHTML=getTabs().map(t=>`<button class="tab${activeTab===t.key?" active":""}${!["terms"].includes(t.key)?" tab-special":""}${t.key==="admin"?" tab-admin":""}" onclick="switchTab('${t.key}')">${isMobile&&t.mLabel?t.mLabel:t.label}</button>`).join("");
 }
 function switchTab(key){
   activeTab=key;openTermId=null;searchQ="";
   if(key==="terms"){activeCat="all";activeGana="전체";}
   const si=document.getElementById("searchInput");if(si)si.value="";
   hideAC();
-  const secs=["terms","bookmark","wrongnote","study","calc","quiz"];
-  secs.forEach(s=>document.getElementById(s+"Section").style.display=s===key?"block":"none");
+  const secs=["terms","bookmark","wrongnote","study","calc","quiz","admin"];
+  secs.forEach(s=>{const el=document.getElementById(s+"Section");if(el)el.style.display=s===key?"block":"none";});
   document.getElementById("navSearchWrap").style.display=key==="terms"?"":"none";
   renderTabs();
   if(key==="terms") renderTerms();
@@ -1461,6 +1495,7 @@ function switchTab(key){
   if(key==="study") renderStudy();
   if(key==="calc"){renderCalc();renderBenchmark();}
   if(key==="quiz") initQuizStart();
+  if(key==="admin") renderAdmin();
 }
 
 // ── TERMS ──
@@ -2296,7 +2331,99 @@ function copyShareLink(){copyText(window._shareUrl||location.href,"공유 링크
 // ── URL SHARED BOOKMARKS ──
 (function(){const p=new URLSearchParams(location.search);const bm=p.get("bm");if(!bm)return;const ids=decodeURIComponent(bm).split(",").filter(Boolean);if(!ids.length)return;ids.forEach(id=>bookmarks.add(id));saveBookmarks();setTimeout(()=>{if(confirm(`공유된 용어집 ${ids.length}개가 북마크에 추가됐어요! 북마크 탭에서 확인할까요?`)){switchTab("bookmark");}},1000);})();
 
-// ── INIT ──
+// ── ADMIN DASHBOARD ──
+function renderAdmin(){
+  if(currentProfile!==ADMIN_ID){ document.getElementById('adminSection').innerHTML=`<div style="text-align:center;padding:60px 0;color:#AAB090;">접근 권한이 없습니다.</div>`; return; }
+  const profiles=getProfiles();
+  const now=Date.now();
+
+  // 전체 사용자 통계 수집
+  const userStats=profiles.map(p=>{
+    const bm=JSON.parse(localStorage.getItem(`mktdict_${p.name}_bm`)||'[]').length;
+    const wn=JSON.parse(localStorage.getItem(`mktdict_${p.name}_wrong`)||'[]').length;
+    const total=parseInt(localStorage.getItem(`mktdict_${p.name}_study_total`)||'0');
+    const streak=JSON.parse(localStorage.getItem(`mktdict_${p.name}_study_streak`)||'{"count":0,"lastDate":""}');
+    const ranking=JSON.parse(localStorage.getItem(`mktdict_${p.name}_ranking`)||'[]');
+    const bestScore=ranking.length?Math.max(...ranking.map(r=>r.pct)):0;
+    const bestLevel=ranking.length?ranking.sort((a,b)=>b.pct-a.pct)[0]:null;
+    const todayStudied=!!localStorage.getItem(`mktdict_${p.name}_study_done_${new Date().toDateString()}`);
+    const lastActive=ranking.length?ranking[ranking.length-1].date:p.created||'-';
+    return{name:p.name,bm,wn,total,streak:streak.count,bestScore,bestLevel,todayStudied,lastActive,rankCount:ranking.length};
+  });
+
+  // 전체 랭킹 (모든 사용자 통합)
+  const allRankings=[];
+  profiles.forEach(p=>{
+    const ranking=JSON.parse(localStorage.getItem(`mktdict_${p.name}_ranking`)||'[]');
+    ranking.forEach(r=>allRankings.push({...r,userName:p.name}));
+  });
+  allRankings.sort((a,b)=>b.pct-a.pct||b.score-a.score);
+
+  // 레벨별 최고 랭킹
+  const levelMap={};
+  allRankings.forEach(r=>{
+    if(!levelMap[r.level]||r.pct>levelMap[r.level].pct) levelMap[r.level]={...r};
+  });
+
+  const totalUsers=profiles.length;
+  const todayActive=userStats.filter(u=>u.todayStudied).length;
+  const totalStudyAll=userStats.reduce((s,u)=>s+u.total,0);
+
+  // 사용자 목록 렌더
+  const userRows=userStats.length?userStats.map(u=>`
+    <div class="admin-user-row">
+      <div class="admin-user-avatar">${u.name.charAt(0)}</div>
+      <div style="flex:1;min-width:0;">
+        <div class="admin-user-name">${u.name}${u.name===ADMIN_ID?'<span style="font-size:9px;background:#D4A020;color:#fff;border-radius:4px;padding:1px 5px;margin-left:5px;font-family:DM Mono,monospace;">ADMIN</span>':''}</div>
+        <div class="admin-user-meta">⭐${u.bm} 📒${u.wn} 📚${u.total}개 🔥${u.streak}일 ${u.todayStudied?'✅ 오늘 공부함':''}</div>
+      </div>
+      <div style="text-align:right;flex-shrink:0;">
+        <div style="font-size:13px;font-weight:700;color:#7A9C30;font-family:'DM Mono',monospace;">${u.bestScore}%</div>
+        <div style="font-size:10px;color:#AAB090;">${u.bestLevel?u.bestLevel.level:'미응시'}</div>
+      </div>
+    </div>`).join(''):`<div class="admin-empty">등록된 사용자가 없습니다</div>`;
+
+  // 전체 랭킹 TOP 10
+  const rankRows=allRankings.slice(0,10).map((r,i)=>`
+    <div class="admin-rank-row" style="${r.userName===ADMIN_ID?'background:#EEF4E4;border:1px solid #C8D890;':''}">
+      <span class="admin-rank-num">${i===0?'🥇':i===1?'🥈':i===2?'🥉':i+1}</span>
+      <span class="admin-rank-name">${r.userName}</span>
+      <span class="admin-rank-level">${r.level}</span>
+      <span class="admin-rank-score">${r.score}/${r.total} (${r.pct}%)</span>
+    </div>`).join('')||`<div class="admin-empty">아직 테스트 기록이 없습니다</div>`;
+
+  document.getElementById('adminSection').innerHTML=`
+    <div class="admin-header">
+      <h2>🔧 관리자 대시보드</h2>
+      <p>안녕하세요, 주주님! 전체 사용자 현황을 확인하세요.</p>
+    </div>
+
+    <div class="admin-grid">
+      <div class="admin-card">
+        <div class="admin-card-title">전체 현황</div>
+        <div class="admin-stat-row"><span class="admin-stat-label">👥 총 사용자</span><span class="admin-stat-val">${totalUsers}명</span></div>
+        <div class="admin-stat-row"><span class="admin-stat-label">☀️ 오늘 공부한 사람</span><span class="admin-stat-val">${todayActive}명</span></div>
+        <div class="admin-stat-row"><span class="admin-stat-label">📚 누적 학습 용어</span><span class="admin-stat-val">${totalStudyAll.toLocaleString()}개</span></div>
+        <div class="admin-stat-row"><span class="admin-stat-label">📖 등록 용어 수</span><span class="admin-stat-val">${TERMS.length}개</span></div>
+        <div class="admin-stat-row"><span class="admin-stat-label">📝 전체 테스트 기록</span><span class="admin-stat-val">${allRankings.length}건</span></div>
+      </div>
+
+      <div class="admin-card">
+        <div class="admin-card-title">사용자 목록</div>
+        ${userRows}
+      </div>
+
+      <div class="admin-card" style="grid-column:1/-1;">
+        <div class="admin-card-title">전체 테스트 랭킹 TOP 10</div>
+        ${rankRows}
+      </div>
+    </div>
+
+    <div style="text-align:right;font-size:11px;color:#AAB090;font-family:'DM Mono',monospace;">
+      마지막 갱신: ${new Date().toLocaleString('ko-KR')}
+      <button onclick="renderAdmin()" style="margin-left:10px;background:none;border:1px solid #DDE0D0;border-radius:5px;padding:3px 10px;font-size:11px;color:#7A8460;cursor:pointer;font-family:'DM Mono',monospace;">새로고침</button>
+    </div>`;
+}
 (function initApp(){
   const lastProfile=localStorage.getItem('mktdict_lastProfile');
   const profiles=getProfiles();
